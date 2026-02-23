@@ -9,9 +9,10 @@ interface JobItemProps {
     job: Job;
     candidateId: string;
     uuid: string;
+    applicationId: string;
 }
 
-export function JobItem({ job, candidateId, uuid }: Readonly<JobItemProps>) {
+export function JobItem({ job, candidateId, uuid, applicationId }: Readonly<JobItemProps>) {
     const [repoUrl, setRepoUrl] = useState("");
     const { mutate, status, isPending, isSuccess, isError, error } = useApplyToJob();
 
@@ -22,6 +23,7 @@ export function JobItem({ job, candidateId, uuid }: Readonly<JobItemProps>) {
             uuid,
             jobId: job.id,
             candidateId,
+            applicationId,
             repoUrl: repoUrl.trim(),
         });
     }

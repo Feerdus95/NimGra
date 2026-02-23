@@ -6,9 +6,10 @@ import { JobItem } from "@/components/JobItem";
 interface JobListProps {
     candidateId: string;
     uuid: string;
+    applicationId: string;
 }
 
-export function JobList({ candidateId, uuid }: Readonly<JobListProps>) {
+export function JobList({ candidateId, uuid, applicationId }: Readonly<JobListProps>) {
     const { data: jobs, isLoading, isError, error } = useJobs();
 
     if (isLoading) {
@@ -50,6 +51,7 @@ export function JobList({ candidateId, uuid }: Readonly<JobListProps>) {
                     job={job}
                     candidateId={candidateId}
                     uuid={uuid}
+                    applicationId={applicationId}
                 />
             ))}
         </div>
