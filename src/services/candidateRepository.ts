@@ -12,7 +12,13 @@ export async function getCandidateByEmail(
     const data = await response.json();
 
     if (!response.ok) {
-        throw new Error(data.message || "Failed to fetch candidate profile");
+        if (data.details?.fieldErrors) {
+            const fieldErrors = Object.entries(data.details.fieldErrors)
+                .map(([field, messages]) => `${field}: ${(messages as string[]).join(", ")}`)
+                .join(" | ");
+            throw new Error(fieldErrors || data.error || "Validation error");
+        }
+        throw new Error(data.message || data.error || "Failed to fetch candidate profile");
     }
 
     return data;

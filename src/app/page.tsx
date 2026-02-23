@@ -87,7 +87,11 @@ export default function Home() {
             Open Positions
           </h2>
 
-          <JobList candidateId={candidate.candidateId} uuid={candidate.uuid} />
+          <JobList
+            candidateId={candidate.candidateId}
+            uuid={candidate.uuid}
+            applicationId={candidate.applicationId}
+          />
         </>
       )}
     </main>
